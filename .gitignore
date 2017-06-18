@@ -33,3 +33,5 @@ packages/
 env/
 whl/
 .vscode/.ropeproject/
+mnist_data/
+__pycache__/

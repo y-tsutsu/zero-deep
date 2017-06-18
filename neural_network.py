@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn
+from my_mnist import load_mnist
+from PIL import Image
 
 
 def step_function(x):
@@ -52,11 +54,22 @@ def forward(network, x):
     return y
 
 
+def show_img(img):
+    pil_img = Image.fromarray(np.uint8(img))
+    pil_img.show()
+
+
 def main():
-    network = init_network()
-    x = np.array([1.0, 0.5])
-    y = forward(network, x)
-    print(y)
+    (x_train, t_train), (x_test, t_test) = load_mnist()
+    img = x_train[0]
+    label = t_train[0]
+    print(label)
+
+    print(img.shape)
+    img = img.reshape(28, 28)
+    print(img.shape)
+
+    show_img(img)
 
 
 if __name__ == '__main__':
