@@ -90,7 +90,7 @@ def check_show_img():
 
 
 def check_accuracy():
-    (x_train, t_train), (x_test, t_test) = load_mnist()
+    (_, __), (x_test, t_test) = load_mnist()
     network = init_network()
 
     accuracy_cnt = 0
@@ -103,8 +103,24 @@ def check_accuracy():
     print('Accuracy: {0}'.format(accuracy_cnt / len(x_test)))
 
 
+def check_accuracy_batch():
+    (_, __), (x_test, t_test) = load_mnist()
+    network = init_network()
+
+    batch_size = 100
+    accuracy_cnt = 0
+    for i in range(0, len(x_test), batch_size):
+        x_batch = x_test[i:i + batch_size]
+        y_batch = predict(network, x_batch)
+        p = np.argmax(y_batch, axis=1)
+        accuracy_cnt += np.sum(p == t_test[i:i + batch_size])
+
+    print('Accuracy: {0}'.format(accuracy_cnt / len(x_test)))
+
+
 def main():
     check_accuracy()
+    check_accuracy_batch()
 
 
 if __name__ == '__main__':
