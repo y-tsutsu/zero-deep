@@ -77,7 +77,7 @@ def show_img(img):
 
 
 def check_show_img():
-    (x_train, t_train), (x_test, t_test) = load_mnist()
+    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
     img = x_train[0]
     label = t_train[0]
     print(label)
@@ -90,7 +90,7 @@ def check_show_img():
 
 
 def check_accuracy():
-    (_, __), (x_test, t_test) = load_mnist()
+    (_, __), (x_test, t_test) = load_mnist(normalize=True)
     network = init_network()
 
     accuracy_cnt = 0
@@ -104,7 +104,7 @@ def check_accuracy():
 
 
 def check_accuracy_batch():
-    (_, __), (x_test, t_test) = load_mnist()
+    (_, __), (x_test, t_test) = load_mnist(normalize=True)
     network = init_network()
 
     batch_size = 100
